@@ -126,7 +126,6 @@ produce_estimation_files <- function(frame, list_of_gpi_models){
         S_GGbalanceGDP = S_GGbalanceGDP + storage_vector_ggb,
         S_NarrownetextdebtCARs = S_NarrownetextdebtCARs + storage_vector_nned,
         S_CurrentaccountbalanceGDP = S_CurrentaccountbalanceGDP + storage_vector_cab,
-        # S_RealGDPgrowth = S_RealGDPgrowth*(1+t_df1[,ncol(t_df1)]),
         S_RealGDPgrowth = S_RealGDPgrowth*(1+(t_df1[,ncol(t_df1)]/10)),
         # We used to calculate the growth rate based on the difference in the loss between 
         # the counterfactual and the scenario. In this setting, perhaps slightly more realistic
@@ -134,9 +133,6 @@ produce_estimation_files <- function(frame, list_of_gpi_models){
         # Economies will still grow, but by this much less on this given year.
         S_GDPpercapitaUS = S_GDPpercapitaUS * (1 + t_df1[,ncol(t_df1)]),
         ln_S_GDPpercapitaUS = log(S_GDPpercapitaUS * (1 + t_df1[,ncol(t_df1)]))
-    # ) %>% group_by(CountryName) %>% dplyr::mutate(
-    #     # S_RealGDPgrowth = Delt(S_GDPpercapitaUS)
-    #     S_RealGDPgrowth = S_RealGDPgrowth*(1+t_df1[,ncol(t_df1)])
     ) %>% dplyr::select(
         # removed an ungroup arguument here from legacy code, because of the way we now
         # reconstruct the growth rate
@@ -159,8 +155,6 @@ produce_estimation_files <- function(frame, list_of_gpi_models){
 
 
 df1 <- read.csv("rawdata/economic.csv", header=TRUE)
-
-# source("src/data_cleaning_functions.r")
 
 y <- 1
 list_of_dataframes <- c()
@@ -200,7 +194,6 @@ baseline <- as.data.frame(df1 %>%
 baseline <- baseline[complete.cases(baseline),]
 
 for (i in dir("scenario_data/")){
-    # if(grepl("losses", c(i))){
         name <- substr(i,1,nchar(i)-4)
         assign(name, read.csv(paste0("scenario_data/", i)))
         list_of_dataframes[y] <- name

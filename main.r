@@ -1,5 +1,5 @@
 setwd("C:/Users/mattb/OneDrive/GitHub/ngfs-credit-ratings")
-source("src/load_dep.r")
+source("src/packages.r")
 source("src/prep_ngfs_data.r")
 source("src/datacleaning.r")
 source("src/analysis.r")

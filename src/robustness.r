@@ -58,15 +58,14 @@ results <- data.frame(
     slm_model_fits = slm_model_fits,
     robust_model_fits = robust_model_fits
 )
-results
+# results
+
 
 pretty_n <- function(n){
     return (format(round(as.numeric(n), 2), nsmall = 2))
 }
 
-
-sink("tables/robust.tex", append=FALSE, split=FALSE)
-
+sink("tables/table4.tex", append=FALSE, split=FALSE)
 cat("
 \\begin{table}[tb!]
 \\footnotesize
@@ -89,9 +88,4 @@ Net Zero 2050 & ",pretty_n(results[5,2])," & ",pretty_n(results[5,3])," & ",pret
 \\end{tabularx}
 \\end{table}
 ")
-
-
-
-
 sink()
-

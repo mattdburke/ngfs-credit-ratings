@@ -1,5 +1,4 @@
 fred_oas_raw <- read.csv("rawdata/fredgraph.csv")
-# sovereign_debt <- read.csv("raw_data/sovereignDebt.csv")
 
 colnames(fred_oas_raw) <- c(
     "date",
@@ -27,8 +26,6 @@ fred_oas_raw <- as.data.frame(fred_oas_raw %>%
         b = as.numeric(as.character(b)),
         ccc = as.numeric(as.character(ccc))
         )) 
-
-# write.csv(fred_oas_raw, "derived_data/cleaned_fred_oas_data.csv", row.names = FALSE)        
 
 fred_oas_raw <- as.data.frame(fred_oas_raw %>%
     dplyr::filter(
@@ -77,38 +74,6 @@ calculate_spreads <- function(series){
   return (spread*100)
 }
 
-# sovereign_debt$iso3 <- countrycode(
-#     sovereign_debt$CountryName,
-#     origin = "country.name", 
-#     destination = "iso3c"
-# )
-
-# sovereign_debt$SovereignDebt <- as.numeric(as.character(sovereign_debt$SovereignDebt))
-
-
-# df1 <- inner_join(
-#     df1,
-#     sovereign_debt,
-#     by = c("ISO2" = "iso3")
-# )
-
-# df1 <- df1 %>% dplyr::mutate(
-#     spread_est = calculate_spreads(est),
-#     spread_act = calculate_spreads(actual),
-#     spread_delta = abs(spread_act - spread_est),
-
-#     cost_of_debt_est = ifelse(actual>est, spread_est * SovereignDebt, 0),
-#     cost_of_debt_act = ifelse(actual>est, spread_act * SovereignDebt, 0),
-#     cost_of_debt_delta = ifelse(actual>est, spread_delta * SovereignDebt,0)
-# )
-
-# write.csv(
-#     df1,
-#     "outputs_data/estimates.csv",
-#     row.names = FALSE
-# )
-
-
 PD_data <- read.csv("rawdata/PD_ratings.csv", header = FALSE)
 
 rating <- PD_data$V1
@@ -133,15 +98,7 @@ implement_PD_equation <- function(rating_estimates){
     )
     return (PD_vector)}
 
-
-
-
-
-
-
-
 baseline <- read.csv("cleandata/baseline_data_clean.csv", header=TRUE)
-
 
 set.seed(77)
 model.forest <- ranger(scale20 ~
@@ -158,24 +115,16 @@ model.forest <- ranger(scale20 ~
 	write.forest = TRUE,
 	keep.inbag=TRUE)
 
-# act <- predict(model.forest, baseline, type="se")$predictions
-
-
-
 produce_baseline_estimate <- function(model, df){
     pred <- predict(model, df, type="se")
 	est <- pred$predictions
     return (est)}
 
-
-
 produce_adjusted_ratings <- function(model, df){
 	pred <- predict(model, df, type="se")
 	est <- pred$predictions
 	se <- pred$se
-	# actual <- produce_baseline_estimate(model, baseline)
 	actual <- df$scale20
-	# actual <- act
 	T <- pred$predictions / se
 	P = exp(-0.717*T -0.416*(T^2))
 	n = length(df$CountryName)
@@ -217,15 +166,8 @@ produce_adjusted_ratings <- function(model, df){
 	return (m1.sum)
 }
 
-
-
-
-
-
 # for all the clean data
 for (i in dir("cleandata/")){
-    # if it has the string "ssp" inside the file name
-    # if(grepl("losses", c(i))){
         name <- substr(i,1,nchar(i)-4)
         # write a new csv file with adjusted ratings
         write.csv(produce_adjusted_ratings(
@@ -237,16 +179,11 @@ for (i in dir("cleandata/")){
         # write them to the output folder under the same name
         file = paste0(
             "output/", name, "_ratings.csv"
-        ))
-}
+        ))}
 
 # aggegrate results into one master frame
-
 y <- 1
 dataframes <- c()
-# rating <- c()
-# scenario <- c()
-# series_labels <- c()
 for (i in dir("output/")){
     if(grepl("0", c(i))){
         name <- substr(i,1,nchar(i)-4)
@@ -265,12 +202,10 @@ for (i in 2:length(dataframes)){
     master_frame <- rbind(master_frame, frame)
 }
 
-
 master_frame <- master_frame %>% dplyr::mutate(
         model = sub("^[^_]*_([^_]*)_.*$", "\\1", scenario),
         scenario_ = sub("^[^_]*_[^_]*_([^_]*)_.*$", "\\1", scenario),
         year = sub("^[^_]*_[^_]*_[^_]*_([^_]*)_.*$", "\\1", scenario)#,
-        # year = sub("^[^_]*_[^_]*_[^_]*_[^_]*_([^_]*)_.*$", "\\1", scenario
         ) %>% dplyr::select(
             -c(scenario)
         )
