@@ -38,7 +38,30 @@ df2 <- df2 %>% group_by(
 ) %>% summarise(
     round(mean(X2050)*100, 2)
 )
-write.csv(df2, "tables/table2.csv", row.names=FALSE)
+sink("tables/table2.tex", append=FALSE, split=FALSE)
+cat("
+\\begin{table}[tb!]
+\\footnotesize
+\\center
+\\caption{NGFS Scenarios}
+\\label{tab:Scenario}
+\\begin{tabularx}{\\textwidth}{X X X X X}
+\\hline
+Scenario Category & Scenario Name & Physical/Transition Risk & Description & Average GDP Losses (\\%) by 2050\\\\
+\\hline
+Orderly & Net Zero 2050 & Low/Low & Limits warming to 1.5C. Strict climate policy and innovation schedule & ", pretty_n(df2[df2$Scenario=="Net Zero 2050",2]),"\\\\
+Orderly & Below 2C & Low/Low & 67\\% chance of limiting global warming to below 2C & ", pretty_n(df2[df2$Scenario=="Below 2",2]),"\\\\
+Disorderly & Delayed Transition & Low/High & Global emissions do not decrease until 2030. Strong policies are then needed to limit warming below 2C & ", pretty_n(df2[df2$Scenario=="Delayed transition",2]),"\\\\
+Hot House World & NDCs & High/Low & All pledged policies & ", pretty_n(df2[df2$Scenario=="Nationally Determined Contributions (NDCs)",2]),"\\\\
+Too little, too late & Fragmented World & High/High & Delayed and divergent climate policy ambition globally. High physical risk everywhere & ", pretty_n(df2[df2$Scenario=="Fragmented World",2]),"\\\\
+\\hline
+\\multicolumn{5}{p{\\textwidth}}{\\begin{footnotesize}This table shows the range of NGFS scenarios accessed from NGFS Phase 5 Scenario Explorer. The NGFS uses three integrated assessment models (IAMs) including MESSAGEix-GLOBIOM 1.1-M-R12, REMIND-MAgPIE 3.2-4.6, and GCAM 6.0.
+\\end{footnotesize}
+}
+\\end{tabularx}
+\\end{table}
+")
+sink()
 
 
 df1 <- read.csv("output/all_scenarios_ratings_results.csv")
@@ -48,7 +71,75 @@ summarize(
     cd_delta_30 = round(mean(cd_delta),2),
     pd_delta_30 = round(mean(pd_delta),2)
 )
-write.csv(df1, "tables/table3.csv", row.names=FALSE)
+sink("tables/table3.tex", append=FALSE, split=FALSE)
+cat("
+\\begin{table}[tb!]
+\\footnotesize
+\\center
+\\caption{Rating outcomes (2050)}
+\\label{tab:rat}
+\\begin{tabularx}{\\textwidth}{X X X X}
+\\hline
+Scenario & Rating change (notches) & Cost of debt premium (\\%) & Change to probability of default (\\%) \\\\
+\\hline
+Net Zero 2050 &", pretty_n(df1[df1$scenario_=="Net Zero 2050",2]) ," & ",pretty_n(df1[df1$scenario_=="Net Zero 2050",3]) ," & " ,pretty_n(df1[df1$scenario_=="Net Zero 2050",4])," \\\\
+Below 2C &", pretty_n(df1[df1$scenario_=="Below 2",2]) ," & ",pretty_n(df1[df1$scenario_=="Below 2",3]) ," & " ,pretty_n(df1[df1$scenario_=="Below 2",4]),"\\\\
+Delayed Transition &", pretty_n(df1[df1$scenario_=="Delayed transition",2]) ," & ",pretty_n(df1[df1$scenario_=="Delayed transition",3]) ," & " ,pretty_n(df1[df1$scenario_=="Delayed transition",4]),"\\\\
+NDCs &", pretty_n(df1[df1$scenario_=="Nationally Determined Contributions (NDCs)",2]) ," & ",pretty_n(df1[df1$scenario_=="Nationally Determined Contributions (NDCs)",3]) ," & " ,pretty_n(df1[df1$scenario_=="Nationally Determined Contributions (NDCs)",4]),"\\\\
+Fragmented World &", pretty_n(df1[df1$scenario_=="Fragmented World",2]) ," & ",pretty_n(df1[df1$scenario_=="Fragmented World",3]) ," & " ,pretty_n(df1[df1$scenario_=="Fragmented World",4]),"\\\\
+\\hline
+\\multicolumn{4}{p{\\textwidth}}{\\begin{footnotesize}This table shows the results of our baseline simulations. Column 1 shows the scenario being estimated. Column 2 shows the average change to the credit rating. Column 3 shows the average change to the cost of debt and Column 4 shows the average change in the probability of default. Each of these results are significant at the 1\\% level in a t-test.
+\\end{footnotesize}
+}
+\\end{tabularx}
+\\end{table}
+")
+sink()
+
+
+
+sink("tables/table5.tex", append=FALSE, split=FALSE)
+cat("
+\\begin{table}[tb!]
+\\footnotesize
+\\centering
+\\caption{S\\&P Credit Rating Scale}
+\\label{tab:sp_rating_scale}
+\\begin{tabularx}{\\textwidth}{p{4cm} p{3cm} p{4cm} }
+\\hline
+Long-term Foreign Currency Issuer Rating Symbol & Numerical Rating & Grade \\\\
+\\hline
+AAA & 20 & Prime \\\\
+AA+ & 19 & High \\\\
+AA & 18 & \\\\
+AA- & 17 & \\\\
+A+ & 16 & Upper-medium \\\\
+A & 15 & \\\\
+A- & 14 & \\\\
+BBB+ & 13 & Lower-medium \\\\
+BBB & 12 & \\\\
+BBB- & 11 & \\\\
+BB+ & 10 & Speculative \\\\
+BB & 9 & \\\\
+BB- & 8 & \\\\
+B+ & 7 & Highly speculative \\\\
+B & 6 & \\\\
+B- & 5 & \\\\
+CCC+ & 4 & Substantial risks \\\\
+CCC & 3 & \\\\
+CCC- & 2 & \\\\
+CC & 1 & Extremely speculative / In default \\\\
+C & 1 & \\\\
+D/SD & 1 & \\\\
+\\hline
+\\multicolumn{3}{p{\\textwidth}}{\\begin{footnotesize}This table shows the S\\&P sovereign credit rating scale. In this study, when we make reference to notch changes in a rating, we refer to this scale.
+\\end{footnotesize}
+}
+\\end{tabularx}
+\\end{table}
+")
+sink()
+
 
 
 # Not in final paper
@@ -79,3 +170,4 @@ a2 <- (a[names(a)==-1]+a[names(a)==0]+a[names(a)==1])/length(acc)
 a3 <- (a[names(a)==-2]+a[names(a)==-1]+a[names(a)==0]+a[names(a)==1]+a[names(a)==2])/length(acc)
 a4 <- (a[names(a)==-3]+a[names(a)==-2]+a[names(a)==-1]+a[names(a)==0]+a[names(a)==1]+a[names(a)==2]+a[names(a)==3])/length(acc)
 acc_table <- cbind(c(a1, a2, a3, a4))
+acc_table # prints the accuracy results discussed in Section 2.3
