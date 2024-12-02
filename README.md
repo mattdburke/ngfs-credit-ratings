@@ -14,6 +14,7 @@ For any support with this replication package please direct your queries to `mat
     `source("src/packages.r")`
     Followed by any other command within the replication package.
 - Tables are reproduced using the `tables.r` file, similarly plots are recreated from the `figures.r` file.
+- Individual tables and graphs can be reproduced by running the relevant section of code in the above .r files. However, the easiest approach is to simply run the whole package and collect the [tables](tables/) and [graphs](plots/) from the relevant folders.
 - The repository will download with all clean and processed data. To test full reproducibility, the researcher can delete all of the files contained within the folders cleandata, output, plots, scenario_data and tables, and then rerun `source("main.r")`.
 
 ## Data dictionaries
