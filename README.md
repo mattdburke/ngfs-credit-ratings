@@ -1,6 +1,6 @@
-# Data and Code for paper "Climate Policy and Sovereign Debt: The impact of the NGFS scenario outcomes on sovereign creditworthiness"
+# Data and Code for paper "Climate Policy and Sovereign Debt: The Impact of Transition Scenarios on Sovereign Creditworthiness"
 
-This repo contains the replication data and code for the paper entitled "Climate Policy and Sovereign Debt: The impact of the NGFS scenario outcomes on sovereign creditworthiness". This was written in R, using data from the Network for Greening the Financial System (NGFS)
+This repo contains the replication data and code for the paper entitled "Climate Policy and Sovereign Debt: The Impact of Transition Scenarios on Sovereign Creditworthiness". This was written in R, using data from the Network for Greening the Financial System (NGFS)
 
 For any support with this replication package please direct your queries to `matt.burke@sheffield.ac.uk`
 
