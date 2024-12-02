@@ -54,7 +54,7 @@ write.csv(df1, "tables/table3.csv", row.names=FALSE)
 # Not in final paper
 baseline <- read.csv("cleandata/baseline_data_clean.csv", header=TRUE)
 set.seed(5)
-sample = sample.split(baseline$CountryName, SplitRatio = .8)
+sample = sample.split(baseline$CountryName, SplitRatio = .7)
 train = subset(baseline, sample == TRUE)
 test  = subset(baseline, sample == FALSE)
 set.seed(77)

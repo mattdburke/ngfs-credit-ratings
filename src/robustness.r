@@ -40,7 +40,6 @@ for (i in 1:length(scenarios)){
     dt_model <- lm(rating_delta ~ scale(log_emissions_total), data = df_estimate)
     dt_robust_model <- coeftest(dt_model, vcov = vcovHC(dt_model, type = "HC0"))
     dt_model <- summary(dt_model)
-    print (dt_model$coefficients)
     slm_estimate[i] <- dt_model$coefficients[2]
     slm_t_value[i] <- dt_model$coefficients[6]
     robust_estimate[i] <- dt_robust_model[2]

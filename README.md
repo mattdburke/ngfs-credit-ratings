@@ -2,14 +2,22 @@
 
 This repo contains the replication data and code for the paper entitled "Climate Policy and Sovereign Debt: The impact of the NGFS scenario outcomes on sovereign creditworthiness". This was written in R, using data from the Network for Greening the Financial System (NGFS)
 
+For any support with this replication package please direct your queries to `matt.burke@sheffield.ac.uk`
+
 ## Instructions for running the code
 
-- Download the raw data from [here](add the link) and add it to the `rawdata` folder. 
+- The raw data is contained within this repository. 
 - Use the `setwd()` command, direct R to the root directory.
-- Run `source("main.r")
+- Run `source("main.r")`
+- To recreate specific elements of the analysis you can run;
+    `setwd("C:/Users/mattb/OneDrive/GitHub/ngfs-credit-ratings")`
+    `source("src/packages.r")`
+    Followed by any other command within the replication package.
+- Tables are reproduced using the `tables.r` file, similarly plots are recreated from the `figures.r` file.
+- The repository will download with all clean and processed data. To test full reproducibility, the researcher can delete all of the files contained within the folders cleandata, output, plots, scenario_data and tables, and then rerun `source("main.r")`.
 
 ## Data dictionaries
-- rawdata: For descriptions of the raw data click [here](rawdata\dictionary.md)
+- rawdata: For descriptions of the raw data click [here](rawdata/dictionary.md)
 
 ## Requirements
 
