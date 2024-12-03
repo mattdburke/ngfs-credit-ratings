@@ -70,12 +70,12 @@ cat("
 \\footnotesize
 \\center
 \\caption{Regression of Simulated Downgrades on Emissions}
-\\label{tab:R}
+\\label{tab:tab4}
 \\begin{tabularx}{\\textwidth}{X X X X X}
 \\hline
 Scenario & $\\beta$ & t-value & t-value (robust) & $R^{2}$ \\\\
 \\hline
-Below 2\\textdegree  & ",pretty_n(results[1,2])," & ",pretty_n(results[1,3])," & ",pretty_n(results[1,5])," & ",pretty_n(results[1,6]),"\\\\
+Below 2$^\\circ$C  & ",pretty_n(results[1,2])," & ",pretty_n(results[1,3])," & ",pretty_n(results[1,5])," & ",pretty_n(results[1,6]),"\\\\
 Delayed Transition  & ",pretty_n(results[2,2])," & ",pretty_n(results[2,3])," & ",pretty_n(results[2,5])," & ",pretty_n(results[2,6]),"\\\\
 Fragmented World  & ",pretty_n(results[3,2])," & ",pretty_n(results[3,3])," & ",pretty_n(results[3,5])," & ",pretty_n(results[3,6]),"\\\\
 NDCs & ",pretty_n(results[4,2])," & ",pretty_n(results[4,3])," & ",pretty_n(results[4,5])," & ",pretty_n(results[4,6]),"\\\\

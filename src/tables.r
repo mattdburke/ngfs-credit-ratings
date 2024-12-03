@@ -9,7 +9,7 @@ cat("
 \\footnotesize
 \\center
 \\caption{Descriptive Statistics}
-\\label{tab:D}
+\\label{tab:tab1}
 \\begin{tabularx}{\\textwidth}{p{7cm} X X X X}
 \\hline
 Variable & Mean & Standard deviation & Minimun & Maximum\\\\
@@ -44,13 +44,13 @@ cat("
 \\footnotesize
 \\center
 \\caption{NGFS Scenarios}
-\\label{tab:Scenario}
+\\label{tab:tab2}
 \\begin{tabularx}{\\textwidth}{X X X X X}
 \\hline
 Scenario Category & Scenario Name & Physical/Transition Risk & Description & Average GDP Losses (\\%) by 2050\\\\
 \\hline
 Orderly & Net Zero 2050 & Low/Low & Limits warming to 1.5C. Strict climate policy and innovation schedule & ", pretty_n(df2[df2$Scenario=="Net Zero 2050",2]),"\\\\
-Orderly & Below 2C & Low/Low & 67\\% chance of limiting global warming to below 2C & ", pretty_n(df2[df2$Scenario=="Below 2",2]),"\\\\
+Orderly & Below 2$^\\circ$C & Low/Low & 67\\% chance of limiting global warming to below 2$^\\circ$C & ", pretty_n(df2[df2$Scenario=="Below 2",2]),"\\\\
 Disorderly & Delayed Transition & Low/High & Global emissions do not decrease until 2030. Strong policies are then needed to limit warming below 2C & ", pretty_n(df2[df2$Scenario=="Delayed transition",2]),"\\\\
 Hot House World & NDCs & High/Low & All pledged policies & ", pretty_n(df2[df2$Scenario=="Nationally Determined Contributions (NDCs)",2]),"\\\\
 Too little, too late & Fragmented World & High/High & Delayed and divergent climate policy ambition globally. High physical risk everywhere & ", pretty_n(df2[df2$Scenario=="Fragmented World",2]),"\\\\
@@ -77,13 +77,13 @@ cat("
 \\footnotesize
 \\center
 \\caption{Rating outcomes (2050)}
-\\label{tab:rat}
+\\label{tab:tab3}
 \\begin{tabularx}{\\textwidth}{X X X X}
 \\hline
 Scenario & Rating change (notches) & Cost of debt premium (\\%) & Change to probability of default (\\%) \\\\
 \\hline
 Net Zero 2050 &", pretty_n(df1[df1$scenario_=="Net Zero 2050",2]) ," & ",pretty_n(df1[df1$scenario_=="Net Zero 2050",3]) ," & " ,pretty_n(df1[df1$scenario_=="Net Zero 2050",4])," \\\\
-Below 2C &", pretty_n(df1[df1$scenario_=="Below 2",2]) ," & ",pretty_n(df1[df1$scenario_=="Below 2",3]) ," & " ,pretty_n(df1[df1$scenario_=="Below 2",4]),"\\\\
+Below 2$^\\circ$C &", pretty_n(df1[df1$scenario_=="Below 2",2]) ," & ",pretty_n(df1[df1$scenario_=="Below 2",3]) ," & " ,pretty_n(df1[df1$scenario_=="Below 2",4]),"\\\\
 Delayed Transition &", pretty_n(df1[df1$scenario_=="Delayed transition",2]) ," & ",pretty_n(df1[df1$scenario_=="Delayed transition",3]) ," & " ,pretty_n(df1[df1$scenario_=="Delayed transition",4]),"\\\\
 NDCs &", pretty_n(df1[df1$scenario_=="Nationally Determined Contributions (NDCs)",2]) ," & ",pretty_n(df1[df1$scenario_=="Nationally Determined Contributions (NDCs)",3]) ," & " ,pretty_n(df1[df1$scenario_=="Nationally Determined Contributions (NDCs)",4]),"\\\\
 Fragmented World &", pretty_n(df1[df1$scenario_=="Fragmented World",2]) ," & ",pretty_n(df1[df1$scenario_=="Fragmented World",3]) ," & " ,pretty_n(df1[df1$scenario_=="Fragmented World",4]),"\\\\
@@ -104,7 +104,7 @@ cat("
 \\footnotesize
 \\centering
 \\caption{S\\&P Credit Rating Scale}
-\\label{tab:sp_rating_scale}
+\\label{tab:tab5}
 \\begin{tabularx}{\\textwidth}{p{4cm} p{3cm} p{4cm} }
 \\hline
 Long-term Foreign Currency Issuer Rating Symbol & Numerical Rating & Grade \\\\
