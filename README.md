@@ -10,7 +10,7 @@ For any support with this replication package please direct your queries to `mat
 - Use the `setwd()` command, direct R to the root directory.
 - Run `source("main.r")`
 - To recreate specific elements of the analysis you can run;
-    `setwd("C:/Users/mattb/OneDrive/GitHub/ngfs-credit-ratings")`
+    `setwd("path_to_root_directory/ngfs-credit-ratings")`
     `source("src/packages.r")`
     Followed by any other command within the replication package.
 - Tables are reproduced using the `tables.r` file, similarly plots are recreated from the `figures.r` file.
