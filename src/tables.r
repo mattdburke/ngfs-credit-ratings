@@ -11,8 +11,9 @@ cat("
 \\caption{Descriptive Statistics}
 \\label{tab:tab1}
 \\begin{tabularx}{\\textwidth}{p{7cm} X X X X}
+\\\\
 \\hline
-Variable & Mean & Standard deviation & Minimun & Maximum\\\\
+Variable & Mean & Standard deviation & Minimum & Maximum\\\\
 \\hline
 Rating & ", pretty_n(mean(df1$scale20))," & ", pretty_n(sd(df1$scale20))," & ", pretty_n(min(df1$scale20))," & ", pretty_n(max(df1$scale20)),"\\\\
 ln GDP per capita & ", pretty_n(mean(df1$ln_S_GDPpercapitaUS))," & ", pretty_n(sd(df1$ln_S_GDPpercapitaUS))," & ", pretty_n(min(df1$ln_S_GDPpercapitaUS))," & ", pretty_n(max(df1$ln_S_GDPpercapitaUS)),"\\\\
@@ -22,7 +23,8 @@ General Government Balance / GDP & ", pretty_n(mean(df1$S_GGbalanceGDP))," & ", 
 Narrow Net External debt / CARs & ", pretty_n(mean(df1$S_NarrownetextdebtCARs))," & ", pretty_n(sd(df1$S_NarrownetextdebtCARs))," & ", pretty_n(min(df1$S_NarrownetextdebtCARs))," & ", pretty_n(max(df1$S_NarrownetextdebtCARs)),"\\\\
 Current Account Balance / GDP & ", pretty_n(mean(df1$S_CurrentaccountbalanceGDP))," & ", pretty_n(sd(df1$S_CurrentaccountbalanceGDP))," & ", pretty_n(min(df1$S_CurrentaccountbalanceGDP))," & ", pretty_n(max(df1$S_CurrentaccountbalanceGDP)),"\\\\
 \\hline
-\\multicolumn{5}{p{\\textwidth}}{\\begin{footnotesize}This table shows the descriptive statistics for our model training data. This ranges from 2015 to 2020, for 123 different countries and a total number of observation equalling 723. The sovereign credit rating variable is on the 20-notch scale, where AAA=20. 
+\\\\
+\\multicolumn{5}{p{\\textwidth}}{\\begin{footnotesize}Notes: This table shows the descriptive statistics for our model training data. This ranges from 2015 to 2020, for 123 different countries and a total number of observation equalling 723. The sovereign credit rating variable is on the 20-notch scale, where AAA=20. 
 \\end{footnotesize}
 }
 \\end{tabularx}
@@ -46,6 +48,7 @@ cat("
 \\caption{NGFS Scenarios}
 \\label{tab:tab2}
 \\begin{tabularx}{\\textwidth}{X X X X X}
+\\\\
 \\hline
 Scenario Category & Scenario Name & Physical/Transition Risk & Description & Average GDP Losses (\\%) by 2050\\\\
 \\hline
@@ -55,7 +58,7 @@ Disorderly & Delayed Transition & Low/High & Global emissions do not decrease un
 Hot House World & NDCs & High/Low & All pledged policies & ", pretty_n(df2[df2$Scenario=="Nationally Determined Contributions (NDCs)",2]),"\\\\
 Too little, too late & Fragmented World & High/High & Delayed and divergent climate policy ambition globally. High physical risk everywhere & ", pretty_n(df2[df2$Scenario=="Fragmented World",2]),"\\\\
 \\hline
-\\multicolumn{5}{p{\\textwidth}}{\\begin{footnotesize}This table shows the range of NGFS scenarios accessed from NGFS Phase 5 Scenario Explorer. The NGFS uses three integrated assessment models (IAMs) including MESSAGEix-GLOBIOM 1.1-M-R12, REMIND-MAgPIE 3.2-4.6, and GCAM 6.0.
+\\multicolumn{5}{p{\\textwidth}}{\\begin{footnotesize}Notes: This table shows the range of NGFS scenarios accessed from NGFS Phase 5 Scenario Explorer. The NGFS uses three integrated assessment models (IAMs) including MESSAGEix-GLOBIOM 1.1-M-R12, REMIND-MAgPIE 3.2-4.6, and GCAM 6.0.
 \\end{footnotesize}
 }
 \\end{tabularx}
@@ -76,9 +79,10 @@ cat("
 \\begin{table}[tb!]
 \\footnotesize
 \\center
-\\caption{Rating outcomes (2050)}
+\\caption{Rating outcomes in 2050}
 \\label{tab:tab3}
 \\begin{tabularx}{\\textwidth}{X X X X}
+\\\\
 \\hline
 Scenario & Rating change (notches) & Cost of debt premium (\\%) & Change to probability of default (\\%) \\\\
 \\hline
@@ -88,7 +92,7 @@ Delayed Transition &", pretty_n(df1[df1$scenario_=="Delayed transition",2]) ," &
 NDCs &", pretty_n(df1[df1$scenario_=="Nationally Determined Contributions (NDCs)",2]) ," & ",pretty_n(df1[df1$scenario_=="Nationally Determined Contributions (NDCs)",3]) ," & " ,pretty_n(df1[df1$scenario_=="Nationally Determined Contributions (NDCs)",4]),"\\\\
 Fragmented World &", pretty_n(df1[df1$scenario_=="Fragmented World",2]) ," & ",pretty_n(df1[df1$scenario_=="Fragmented World",3]) ," & " ,pretty_n(df1[df1$scenario_=="Fragmented World",4]),"\\\\
 \\hline
-\\multicolumn{4}{p{\\textwidth}}{\\begin{footnotesize}This table shows the results of our baseline simulations. Column 1 shows the scenario being estimated. Column 2 shows the average change to the credit rating. Column 3 shows the average change to the cost of debt and Column 4 shows the average change in the probability of default. Each of these results are significant at the 1\\% level in a t-test.
+\\multicolumn{4}{p{\\textwidth}}{\\begin{footnotesize}Notes: Column 1 shows the scenario being estimated, Column 2 shows the average change to the credit rating, Column 3 shows the average change to the cost of debt, and Column 4 shows the average change in the probability of default. The results of our baseline simulations are all significant at the 1\\% level.
 \\end{footnotesize}
 }
 \\end{tabularx}
@@ -132,7 +136,7 @@ CC & 1 & Extremely speculative / In default \\\\
 C & 1 & \\\\
 D/SD & 1 & \\\\
 \\hline
-\\multicolumn{3}{p{\\textwidth}}{\\begin{footnotesize}This table shows the S\\&P sovereign credit rating scale. In this study, when we make reference to notch changes in a rating, we refer to this scale.
+\\multicolumn{3}{p{\\textwidth}}{\\begin{footnotesize}
 \\end{footnotesize}
 }
 \\end{tabularx}

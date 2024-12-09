@@ -72,6 +72,7 @@ cat("
 \\caption{Regression of Simulated Downgrades on Emissions}
 \\label{tab:tab4}
 \\begin{tabularx}{\\textwidth}{X X X X X}
+\\\\
 \\hline
 Scenario & $\\beta$ & t-value & t-value (robust) & $R^{2}$ \\\\
 \\hline
@@ -81,7 +82,7 @@ Fragmented World  & ",pretty_n(results[3,2])," & ",pretty_n(results[3,3])," & ",
 NDCs & ",pretty_n(results[4,2])," & ",pretty_n(results[4,3])," & ",pretty_n(results[4,5])," & ",pretty_n(results[4,6]),"\\\\
 Net Zero 2050 & ",pretty_n(results[5,2])," & ",pretty_n(results[5,3])," & ",pretty_n(results[5,5])," & ",pretty_n(results[5,6]),"\\\\
 \\hline
-\\multicolumn{5}{p{\\textwidth}}{\\begin{footnotesize}This table shows the results of our regression of simulated downgrades on standardized log total emissions ($\\Delta Rating_{i} = \\beta lnEmissions_{i} + \\mu_{i}$) for 2020. We do this for each of the five scenarios. Column 2 reveals the $\\beta$ estimate for the regression, Columns 3 and 4 show the t-value and robust t-value respectively, and Column 5 shows the model fit.
+\\multicolumn{5}{p{\\textwidth}}{\\begin{footnotesize}Notes: This table shows the results of our regression of simulated downgrades on standardized log total emissions ($\\Delta Rating_{i} = \\beta lnEmissions_{i} + \\mu_{i}$) for 2020. We do this for each of the five scenarios. Column 2 reveals the $\\beta$ estimate for the regression, Columns 3 and 4 show the t-value and robust t-value respectively, and Column 5 shows the model fit.
 \\end{footnotesize}
 }
 \\end{tabularx}
